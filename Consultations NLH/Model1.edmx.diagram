@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9b6ebcd116764259a9ac51e968d5c7c6" Name="Diagram1">
+        <EntityTypeShape EntityType="NorthernLightsModel.Admission" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthernLightsModel.Assurance" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthernLightsModel.Departement" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthernLightsModel.Lit" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthernLightsModel.Medecin" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthernLightsModel.Patient" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NorthernLightsModel.TypeLit" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="NorthernLightsModel.FK_Admission_Lit" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthernLightsModel.FK_Admission_Medecin" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthernLightsModel.FK_Admission_Patient" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthernLightsModel.FK_Patient_Assurance" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthernLightsModel.FK_Lit_Departement" ManuallyRouted="false" />
+        <AssociationConnector Association="NorthernLightsModel.FK_Lit_TypeLit" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

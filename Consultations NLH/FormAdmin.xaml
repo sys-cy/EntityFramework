@@ -1,0 +1,265 @@
+﻿<Window x:Class="Consultations_NLH.FormAdmin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Consultations_NLH"
+        mc:Ignorable="d"
+        Title="Administration"
+        Height="450"
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed"
+        Closing="Window_Closing">
+    <Grid>
+        <TabControl x:Name="tcAdministration"
+                    Margin="10"
+                    SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Personnel">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgMedecins"
+                              ItemsSource="{Binding}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="True"
+                              DisplayMemberPath="IdMedecin"
+                              Margin="10,10,0,35"
+                              CellEditEnding="dgMedecins_CellEditEnding"
+                              HorizontalAlignment="Left"
+                              Width="746">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id"
+                                                Binding="{Binding IdMedecin}" />
+                            <DataGridTextColumn Header="Nom"
+                                                Width="*"
+                                                Binding="{Binding NomMedecin}" />
+                            <DataGridTextColumn Header="Prenom"
+                                                Width="*"
+                                                Binding="{Binding PrenomMedecin}" />
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="ctxSupprimer"
+                                          Header="Supprimer"
+                                          Click="MenuItem_Click"></MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                    <Button Content="Enregistrer"
+                            Margin="10,0,10,10"
+                            Click="Button_Click"
+                            Height="20"
+                            VerticalAlignment="Bottom"
+                            Grid.ColumnSpan="2" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Patients">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgPatients"
+                              ItemsSource="{Binding}"
+                              AutoGenerateColumns="False"
+                              Margin="10"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="NAS"
+                                                Binding="{Binding Nas}" />
+                            <DataGridTextColumn Header="Nom"
+                                                Width="*"
+                                                Binding="{Binding NomPatient}" />
+                            <DataGridTextColumn Header="Prenom"
+                                                Width="*"
+                                                Binding="{Binding PrenomPatient}" />
+                            <DataGridTextColumn Header="Naissance"
+                                                Width="*"
+                                                Binding="{Binding DateNaissance, StringFormat=\{0:dd-MM-yyyy\}}" />
+                            <DataGridTextColumn Header="Adresse"
+                                                Width="*"
+                                                Binding="{Binding Adresse}" />
+                            <DataGridTextColumn Header="Ville"
+                                                Width="*"
+                                                Binding="{Binding Ville}" />
+                            <DataGridTextColumn Header="Province"
+                                                Width="*"
+                                                Binding="{Binding Province}" />
+                            <DataGridTextColumn Header="CodePostal"
+                                                Width="*"
+                                                Binding="{Binding CodePostal}" />
+                            <DataGridTextColumn Header="Telephone"
+                                                Width="*"
+                                                Binding="{Binding Telephone}" />
+                            <DataGridTextColumn Header="Assurance"
+                                                Width="*"
+                                                Binding="{Binding IdAssurance}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Admissions">
+                <Grid>
+                    <DataGrid x:Name="dgAdmissions"
+                              ItemsSource="{Binding}"
+                              AutoGenerateColumns="False"
+                              Margin="10"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id"
+                                                Binding="{Binding IdAdmission}" />
+                            <DataGridTextColumn Header="Chirurgie"
+                                                Width="*"
+                                                Binding="{Binding Chirurgie}" />
+                            <DataGridTextColumn Header="Date Chirurgie"
+                                                Width="*"
+                                                Binding="{Binding DateChirurgie, StringFormat=\{0:dd-MM-yyyy\}}" />
+                            <DataGridTextColumn Header="Admission"
+                                                Width="*"
+                                                Binding="{Binding DateAdmission, StringFormat=\{0:dd-MM-yyyy\}}" />
+                            <DataGridTextColumn Header="Conge"
+                                                Width="*"
+                                                Binding="{Binding DateConge, StringFormat=\{0:dd-MM-yyyy\}}" />
+                            <DataGridTextColumn Header="TV"
+                                                Width="*"
+                                                Binding="{Binding Televiseur}" />
+                            <DataGridTextColumn Header="Tel"
+                                                Width="*"
+                                                Binding="{Binding Telephone}" />
+                            <DataGridTextColumn Header="Nas"
+                                                Width="*"
+                                                Binding="{Binding Nas}" />
+                            <DataGridTextColumn Header="Lit"
+                                                Width="*"
+                                                Binding="{Binding NumeroLit}" />
+                            <DataGridTextColumn Header="Medecin"
+                                                Width="*"
+                                                Binding="{Binding IdMedecin}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Lits">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="264*" />
+                        <ColumnDefinition Width="119*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48*" />
+                        <RowDefinition Height="323*" />
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="dgLits"
+                              ItemsSource="{Binding}"
+                              AutoGenerateColumns="False"
+                              Grid.Column="0"
+                              Margin="10"
+                              Grid.Row="1"
+                              IsEnabled="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Numero Lit"
+                                                Width="*"
+                                                Binding="{Binding NumeroLit}" />
+                            <DataGridTextColumn Header="Occupé"
+                                                Width="*"
+                                                Binding="{Binding Occupe}" />
+                            <DataGridTextColumn Header="Type Lit"
+                                                Width="*"
+                                                Binding="{Binding Description}" />
+                            <DataGridTextColumn Header="Departement"
+                                                Width="*"
+                                                Binding="{Binding NomDepartement}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <ListBox x:Name="lstTypeLit"
+                             ItemsSource="{Binding}"
+                             DisplayMemberPath="Description"
+                             Grid.Column="1"
+                             Margin="10"
+                             Grid.Row="1"
+                             SelectionChanged="lstTypeLit_SelectionChanged" />
+                    <Label Content="Type de lit"
+                           Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           Margin="10,12,0,0"
+                           VerticalAlignment="Top" />
+                    <Label Content="Liste de tous les lits dans l'hôpital"
+                           HorizontalAlignment="Left"
+                           Margin="10,15,0,0"
+                           VerticalAlignment="Top" />
+                    <Label x:Name="lblIdType"
+                           Content="00"
+                           Grid.Column="1"
+                           Margin="205,10,10,0"
+                           VerticalAlignment="Top" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Identification">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="lstDepartements"
+                             Grid.Column="0"
+                             ItemsSource="{Binding}"
+                             DisplayMemberPath="NomDepartement"
+                             Margin="10"
+                             Grid.Row="1"
+                             SelectionChanged="lstDepartements_SelectionChanged"></ListBox>
+                    <ListBox x:Name="lstAssurances"
+                             Grid.Column="1"
+                             ItemsSource="{Binding}"
+                             DisplayMemberPath="NomCompanie"
+                             Margin="10"
+                             Grid.Row="1"
+                             SelectionChanged="lstAssurances_SelectionChanged" />
+                    <ListBox x:Name="lstBonusPlusPlus"
+                             Grid.Column="2"
+                             Margin="10"
+                             Grid.Row="1" />
+                    <Label Content="Id départements"
+                           HorizontalAlignment="Left"
+                           Margin="10,12,0,0"
+                           VerticalAlignment="Top"
+                           Height="26"
+                           Width="Auto" />
+                    <Label Content="Id assurances"
+                           HorizontalAlignment="Left"
+                           Margin="10,12,0,0"
+                           VerticalAlignment="Top"
+                           Height="26"
+                           Width="Auto"
+                           Grid.Column="1" />
+                    <Label Content="Id bonus++"
+                           HorizontalAlignment="Left"
+                           Margin="10,12,0,0"
+                           VerticalAlignment="Top"
+                           Height="26"
+                           Width="Auto"
+                           Grid.Column="2" />
+                    <Label x:Name="lblIdDepartement"
+                           Content="00000"
+                           Margin="0,12,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Right"
+                           HorizontalContentAlignment="Right" />
+                    <Label x:Name="lblIdIdAssurance"
+                           Content="00000"
+                           Margin="0,12,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Right"
+                           HorizontalContentAlignment="Right"
+                           Grid.Column="1" />
+                    <Label x:Name="lblIdBonusPlusPlus"
+                           Content="00000"
+                           Margin="203,12,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Grid.Column="2" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

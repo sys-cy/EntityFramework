@@ -1,0 +1,15 @@
+﻿<Application x:Class="Consultations_NLH.App"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:local="clr-namespace:Consultations_NLH"
+             xmlns:converter="clr-namespace:Consultations_NLH.Converters"
+            StartupUri="FormAccueil.xaml">
+    <Application.Resources>
+        <converter:PatientToAjouterConverter x:Key="PatientToAjouterConverter" />
+        <converter:PatientToAdmissionConverter x:Key="PatientToAdmission" />
+        <converter:PatientToAdmettreConverter x:Key="PatientToAdmettre" />
+        <converter:CoutTotalConverter x:Key="CoutTotalConverter" />
+        <converter:NumeroLitConverter x:Key="NumeroLitConverter" />
+        <converter:DepartementConverter x:Key="DepartementConverter" />
+    </Application.Resources>
+</Application>
